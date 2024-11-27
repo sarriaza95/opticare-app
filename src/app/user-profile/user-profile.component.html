@@ -1,89 +1,187 @@
 <div class="main-content">
   <div class="container-fluid">
       <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
               <div class="card">
                   <div class="card-header card-header-danger">
-                      <h4 class="card-title">Edit Profile</h4>
-                      <p class="card-category">Complete your profile</p>
+                      <h4 class="card-title">Crear Clientes</h4>
+                      <p class="card-category">Ingrese toda la información del cliente</p>
                   </div>
                   <div class="card-body">
                       <form>
                           <div class="row">
-                              <div class="col-md-5">
-                                <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Company (disabled)" disabled>
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-md-3">
+                            <div class="col-md-4">
+                              <mat-form-field class="example-full-width">
+                                <input matInput [value]="currentDate" placeholder="Fecha Consulta" disabled />
+                              </mat-form-field>
+                              
+                            </div>
+                              <div class="col-md-4">
                                   <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Username">
+                                    <input matInput placeholder="Nombre Completo">
                                   </mat-form-field>
                               </div>
                               <div class="col-md-4">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Email address" type="email">
-                                  </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Edad">
+                                </mat-form-field>
+                            </div>
+                             
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Fecha Nacimiento (yyyy-mm-dd)">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Telefono / celular">
+                              </mat-form-field>
+                          </div>
+                            <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Email" type="email">
+                                </mat-form-field>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                          <h5>
+                            Antecedentes Patológicos
+                          </h5>
+                        </div>
+                          <div class="row">
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Presión Arterial" type="text">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Glucosa" type="text">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-4">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Kx Objetiva" type="text">
+                                </mat-form-field>
                               </div>
                           </div>
                           <div class="row">
-                              <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Fist Name" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Last Name" type="text">
-                                </mat-form-field>
-                              </div>
+                            <div class="col-md-3">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Sub" type="text">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="AU" type="text">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="UL" type="text">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-md-3">
+                              <mat-form-field class="example-full-width">
+                                <input matInput placeholder="UP" type="text">
+                              </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <h5>
+                            Cover Test
+                          </h5>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Mutilidad Ocular" type="text">
+                            </mat-form-field>
                           </div>
+                          <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Fondo de Ojo" type="text">
+                            </mat-form-field>
+                          </div>
+                          <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Segmento Anterior" type="text">
+                            </mat-form-field>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Presión Ocular" type="text">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Distancia Interpupilar" type="text">
+                          </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Altura" type="text">
+                          </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <h5>
+                        Tipo de Lente
+                      </h5>
+                    </div>
                           <div class="row">
                               <div class="col-md-12">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Adress" type="text">
+                                  <input matInput placeholder="Tipo de lente" type="text">
                                 </mat-form-field>
                               </div>
                           </div>
                           <div class="row">
+                            <h5>
+                              Detalle de Montaje
+                            </h5>
+                          </div>
+                          <div class="row">
                               <div class="col-md-4">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="City" type="text">
+                                  <input matInput placeholder="OD" type="text">
                                 </mat-form-field>
                               </div>
                               <div class="col-md-4">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Country" type="text">
+                                  <input matInput placeholder="OI" type="text">
                                 </mat-form-field>
                               </div>
                               <div class="col-md-4">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Postal Code" type="text">
+                                  <input matInput placeholder="V" type="text">
                                 </mat-form-field>
                               </div>
                           </div>
                           <div class="row">
-                              <div class="col-md-12">
-                                <label>About Me</label>
-                                <mat-form-field class="example-full-width">
-                                   <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
-                                 </mat-form-field>
-                                  <!-- <div class="form-group">
-
-                                      <div class="form-group">
-                                          <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                          <textarea class="form-control" rows="5"></textarea>
-                                      </div>
-                                  </div> -->
-                              </div>
+                            <h5>
+                              Observaciones / Comentarios
+                            </h5>
                           </div>
-                          <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                      <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Observaciones" type="text">
+                                      </mat-form-field>
+                                    </div>
+                                </div>
+                          <button mat-raised-button type="submit" class="btn btn-danger pull-right">Guardar Cliente</button>
                           <div class="clearfix"></div>
                       </form>
                   </div>
               </div>
           </div>
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
               <div class="card card-profile">
                   <div class="card-avatar">
                       <a href="javascript:void(0)">
@@ -99,7 +197,7 @@
                       <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
                   </div>
               </div>
-          </div>
+          </div> -->
       </div>
   </div>
 </div>
