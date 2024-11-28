@@ -1,20 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  selector: "app-user-profile",
+  templateUrl: "./user-profile.component.html",
+  styleUrls: ["./user-profile.component.css"],
 })
 export class UserProfileComponent implements OnInit {
-  currentDate: string; // Propiedad que contendrá la fecha como texto
+  mainForm: FormGroup; // Formulario principal
+  hoy: string = new Date().toISOString().substring(0, 10); // Fecha actual
 
-  constructor() { }
+  lensometriaData = [
+    { ojo: "OD", esf: "", cil: "", eje: "" },
+    { ojo: "OI", esf: "", cil: "", eje: "" },
+  ];
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    // Inicializa con la fecha actual en formato 'yyyy-MM-dd'
-    const today = new Date();
-    this.currentDate = today.toISOString().split('T')[0]; // Formato: yyyy-MM-dd
+    this.mainForm = this.fb.group({
+      personalInfo: this.fb.group({
+        nombre: [""],
+        fecha: [this.hoy],
+        fechaNacimiento: [""],
+        ultimaConsulta: [""],
+        edad: [""],
+        contacto: [""],
+        ocupacion: [""],
+        motivo: [""],
+      }),
+      antecedentes: this.fb.group({
+        personales: [""],
+        oculares: [""],
+      }),
+      lensometria: this.fb.group({
+        esf: [""],
+        cil: [""],
+        eje: [""],
+      }),
+      observaciones: [""],
+    });
   }
 
+  submitForm() {
+    console.log(this.mainForm.value);
+  }
 }

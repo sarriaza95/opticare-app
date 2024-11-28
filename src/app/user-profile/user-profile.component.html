@@ -1,187 +1,87 @@
 <div class="main-content">
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title">Crear Clientes</h4>
-                      <p class="card-category">Ingrese toda la información del cliente</p>
-                  </div>
-                  <div class="card-body">
-                      <form>
-                          <div class="row">
-                            <div class="col-md-4">
-                              <mat-form-field class="example-full-width">
-                                <input matInput [value]="currentDate" placeholder="Fecha Consulta" disabled />
-                              </mat-form-field>
-                              
-                            </div>
-                              <div class="col-md-4">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Nombre Completo">
-                                  </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Edad">
-                                </mat-form-field>
-                            </div>
-                             
-                          </div>
-                          <div class="row">
-                            <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Fecha Nacimiento (yyyy-mm-dd)">
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4">
-                              <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Telefono / celular">
-                              </mat-form-field>
-                          </div>
-                            <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Email" type="email">
-                                </mat-form-field>
-                            </div>
-                            
-                        </div>
-                        <div class="row">
-                          <h5>
-                            Antecedentes Patológicos
-                          </h5>
-                        </div>
-                          <div class="row">
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Presión Arterial" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Glucosa" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Kx Objetiva" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-3">
-                              <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Sub" type="text">
-                              </mat-form-field>
-                            </div>
-                            <div class="col-md-3">
-                              <mat-form-field class="example-full-width">
-                                <input matInput placeholder="AU" type="text">
-                              </mat-form-field>
-                            </div>
-                            <div class="col-md-3">
-                              <mat-form-field class="example-full-width">
-                                <input matInput placeholder="UL" type="text">
-                              </mat-form-field>
-                            </div>
-                            <div class="col-md-3">
-                              <mat-form-field class="example-full-width">
-                                <input matInput placeholder="UP" type="text">
-                              </mat-form-field>
-                            </div>
-                        </div>
-                        <div class="row">
-                          <h5>
-                            Cover Test
-                          </h5>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4">
-                            <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Mutilidad Ocular" type="text">
-                            </mat-form-field>
-                          </div>
-                          <div class="col-md-4">
-                            <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Fondo de Ojo" type="text">
-                            </mat-form-field>
-                          </div>
-                          <div class="col-md-4">
-                            <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Segmento Anterior" type="text">
-                            </mat-form-field>
-                          </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Presión Ocular" type="text">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Distancia Interpupilar" type="text">
-                          </mat-form-field>
-                        </div>
-                        <div class="col-md-4">
-                          <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Altura" type="text">
-                          </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                      <h5>
-                        Tipo de Lente
-                      </h5>
-                    </div>
-                          <div class="row">
-                              <div class="col-md-12">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Tipo de lente" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <h5>
-                              Detalle de Montaje
-                            </h5>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="OD" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="OI" type="text">
-                                </mat-form-field>
-                              </div>
-                              <div class="col-md-4">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="V" type="text">
-                                </mat-form-field>
-                              </div>
-                          </div>
-                          <div class="row">
-                            <h5>
-                              Observaciones / Comentarios
-                            </h5>
-                          </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                      <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Observaciones" type="text">
-                                      </mat-form-field>
-                                    </div>
-                                </div>
-                          <button mat-raised-button type="submit" class="btn btn-danger pull-right">Guardar Cliente</button>
-                          <div class="clearfix"></div>
-                      </form>
-                  </div>
-              </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Crear Clientes</h4>
+            <p class="card-category">Ingrese toda la información del cliente</p>
           </div>
-          <!-- <div class="col-md-4">
+          <div class="card-body">
+            <mat-vertical-stepper [linear]="true" [formGroup]="mainForm">
+              <!-- Step 1: Datos Personales -->
+              <mat-step [stepControl]="mainForm.get('personalInfo')">
+                <form [formGroup]="mainForm.get('personalInfo')">
+                  <ng-template matStepLabel>Datos Personales</ng-template>
+                  <div class="step-container">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Nombre del Px</mat-label>
+                      <input matInput formControlName="nombre" placeholder="Nombre completo">
+                    </mat-form-field>
+                    <div class="row">
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Fecha</mat-label>
+                        <input matInput formControlName="fecha" [value]="hoy" disabled>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Fecha de nacimiento</mat-label>
+                        <input matInput formControlName="fechaNacimiento" type="date">
+                      </mat-form-field>
+                    </div>
+                    <!-- Resto del contenido omitido para brevedad -->
+                  </div>
+                  <div>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+
+              <!-- Step 2: Antecedentes -->
+              <mat-step [stepControl]="mainForm.get('antecedentes')">
+                <form [formGroup]="mainForm.get('antecedentes')">
+                  <ng-template matStepLabel>Antecedentes</ng-template>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Personales</mat-label>
+                    <textarea matInput formControlName="personales" rows="2"></textarea>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Oculares</mat-label>
+                    <textarea matInput formControlName="oculares" rows="2"></textarea>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+
+              <!-- Step 3: Lensometría -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Lensometría</ng-template>
+                  <table mat-table>
+                    <tr>
+                      <th>OJO</th>
+                      <th>ESF</th>
+                      <th>CIL</th>
+                      <th>EJE</th>
+                    </tr>
+                    <tr *ngFor="let ojo of lensometriaData">
+                      <td>{{ ojo.ojo }}</td>
+                      <td><input matInput formControlName="esf" [placeholder]="ojo.ojo"></td>
+                      <td><input matInput formControlName="cil"></td>
+                      <td><input matInput formControlName="eje"></td>
+                    </tr>
+                  </table>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+            </mat-vertical-stepper>
+
+            <!-- <div class="col-md-4">
               <div class="card card-profile">
                   <div class="card-avatar">
                       <a href="javascript:void(0)">
@@ -198,6 +98,6 @@
                   </div>
               </div>
           </div> -->
+          </div>
+        </div>
       </div>
-  </div>
-</div>
