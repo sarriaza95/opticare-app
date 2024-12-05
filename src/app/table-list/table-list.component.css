@@ -1,0 +1,17 @@
+.container {
+    margin: 20px;
+    margin-top: 50px !important;
+    width: 100%;
+    max-width: 100% !important;
+  }
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  table {
+    width: 100%;
+  }
+  button {
+    margin: 5px;
+    background-color: #355D6D !important;
+  }

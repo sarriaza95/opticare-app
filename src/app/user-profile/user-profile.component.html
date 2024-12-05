@@ -19,14 +19,54 @@
                       <input matInput formControlName="nombre" placeholder="Nombre completo">
                     </mat-form-field>
                     <div class="row">
-                      <mat-form-field appearance="outline" class="half-width">
-                        <mat-label>Fecha</mat-label>
-                        <input matInput formControlName="fecha" [value]="hoy" disabled>
-                      </mat-form-field>
-                      <mat-form-field appearance="outline" class="half-width">
-                        <mat-label>Fecha de nacimiento</mat-label>
-                        <input matInput formControlName="fechaNacimiento" type="date">
-                      </mat-form-field>
+                      <div class="col-6">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Fecha</mat-label>
+                          <input matInput formControlName="fecha" [value]="hoy" disabled>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-6">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Fecha de nacimiento</mat-label>
+                          <input matInput formControlName="fechaNacimiento" type="date">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Ultima Consulta</mat-label>
+                          <input matInput formControlName="fechaNacimiento" type="date">
+                        </mat-form-field>
+                      </div>
+                      <div class="col-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Edad</mat-label>
+                          <input matInput formControlName="nombre" placeholder="Nombre completo">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Numero de contacto</mat-label>
+                          <input matInput disabled>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-6">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Ocupacion</mat-label>
+                          <input matInput formControlName="nombre" placeholder="Nombre completo">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Motivo de Consulta</mat-label>
+                          <input matInput disabled>
+                        </mat-form-field>
+                      </div>
                     </div>
                     <!-- Resto del contenido omitido para brevedad -->
                   </div>
@@ -59,23 +99,382 @@
               <mat-step [stepControl]="mainForm.get('lensometria')">
                 <form [formGroup]="mainForm.get('lensometria')">
                   <ng-template matStepLabel>Lensometría</ng-template>
-                  <table mat-table>
-                    <tr>
-                      <th>OJO</th>
-                      <th>ESF</th>
-                      <th>CIL</th>
-                      <th>EJE</th>
-                    </tr>
-                    <tr *ngFor="let ojo of lensometriaData">
-                      <td>{{ ojo.ojo }}</td>
-                      <td><input matInput formControlName="esf" [placeholder]="ojo.ojo"></td>
-                      <td><input matInput formControlName="cil"></td>
-                      <td><input matInput formControlName="eje"></td>
-                    </tr>
-                  </table>
+                  <table>
+                    
+                    <thead>
+                        <tr>
+                            <th>OJO</th>
+                            <th>ESF</th>
+                            <th>CIL</th>
+                            <th>EJE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>OD</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>OI</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ADD</td>
+                            <td colspan="3"></td>
+                        </tr>
+                    </tbody>
+                </table>
                   <div>
                     <button mat-button matStepperPrevious>Anterior</button>
                     <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 4: Tipo de lente y filtros -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Tipo de lentes</ng-template>
+                  <div class="row">
+                    <div class="col-12">
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Tipos de lentes y Filtros</mat-label>
+                        <input matInput disabled>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 5: Examen Objetivo -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Examen Objetivo</ng-template>
+                  <table>
+                    <thead>
+                        <tr>
+                            <th>OJO</th>
+                            <th>ESF</th>
+                            <th>CIL</th>
+                            <th>EJE</th>
+                            <th>AVSC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>OD</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>OI</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 6: RX Final -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>RX Final</ng-template>
+                  <table>
+                    <thead>
+                      <tr>
+                          <th>OJO</th>
+                          <th>ESF</th>
+                          <th>CIL</th>
+                          <th>EJE</th>
+                          <th>AVL</th>
+                          <th>AVC</th>
+                          <th>DNP</th>
+                          <th>ALT</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>OD</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>OI</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>ADD</td>
+                          <td colspan="7"></td>
+                      </tr>
+                  </tbody>
+                </table>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 7: Biomicroscopia -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Biomicroscopia</ng-template>
+                  <table>
+                    <thead>
+                      <tr>
+                          <th>OD</th>
+                          <th>OI</th>
+                          
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>OD</td>
+                          <td></td>
+                          
+                      </tr>
+                  </tbody>
+                </table>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 8: Fondo de ojo -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Fondo de ojo</ng-template>
+                  <table>
+                    <thead>
+                      <tr>
+                          <th>OD</th>
+                          <th>OI</th>
+                          
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>OD</td>
+                          <td></td>
+                          
+                      </tr>
+                  </tbody>
+                </table>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 9: Motilidad Ocular -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Motilidad Ocular</ng-template>
+                  <table>
+                    <thead>
+                      <tr>
+                          <th>OD</th>
+                          <th>OI</th>
+                          <th>AO</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>OD</td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                  </tbody>
+                </table>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 10: Cover Test -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Cover Test</ng-template>
+                  <table>
+                    <thead>
+                      <tr>
+                          <th>OJO</th>
+                          <th>VL</th>
+                          <th>VP</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>OD</td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>OI</td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                  </tbody>
+                </table>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 11: PIO -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>PIO</ng-template>
+                  <table>
+                    <thead>
+                      <tr>
+                          <th>OJO</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>OD</td>
+                      </tr>
+                      <tr>
+                          <td>OI</td>
+                      </tr>
+                  </tbody>
+                </table>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 12: Diagnostico -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Diagnostico</ng-template>
+                  <div class="row">
+                    <div class="col-12">
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Diagnostico</mat-label>
+                        <input matInput disabled>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Tipos de lentes</mat-label>
+                        <input matInput disabled>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Próxima cita</mat-label>
+                        <input matInput disabled>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Observaciones</mat-label>
+                        <input matInput disabled>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                  </div>
+                </form>
+              </mat-step>
+              <!-- Step 13: Datos de montaje -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Datos de montaje</ng-template>
+                  <table>
+                    <thead>
+                        <tr>
+                            <th>Descentración</th>
+                            <th>H</th>
+                            <th>V</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>OD</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>OI</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </form>
+              </mat-step>
+              <!-- Step 14: Datos de montaje -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Queratometría</ng-template>
+                  <table>
+                    <thead>
+                        <tr>
+                            <th>OD</th>
+                            <th>OI</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>OD</td>
+                            <td>OI</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+                </form>
+              </mat-step>
+              <!-- Step 14: Datos de montaje -->
+              <mat-step [stepControl]="mainForm.get('lensometria')">
+                <form [formGroup]="mainForm.get('lensometria')">
+                  <ng-template matStepLabel>Pupilas</ng-template>
+                  <div class="row">
+                    <div class="col-12">
+                      <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Observaciones</mat-label>
+                        <input matInput disabled>
+                      </mat-form-field>
+                    </div>
                   </div>
                 </form>
               </mat-step>
