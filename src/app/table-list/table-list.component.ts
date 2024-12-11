@@ -3,6 +3,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import * as XLSX from 'xlsx';
+import { MatDialog } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
+import { DetalleClienteComponent } from '../detalle-cliente/detalle-cliente.component'; // Ajusta la ruta si es necesario
+import { DialogEditarClienteComponent } from 'app/dialog-editar-cliente/dialog-editar-cliente.component';
+import { DialogAgregarCitaClienteComponent } from 'app/dialog-agregar-cita-cliente/dialog-agregar-cita-cliente.component';
+import { DialogVerConsultaClienteComponent } from 'app/dialog-ver-consulta-cliente/dialog-ver-consulta-cliente.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-table-list',
@@ -10,23 +17,35 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./table-list.component.css']
 })
 export class TableListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'country', 'city', 'salary', 'details'];
-  dataSource = new MatTableDataSource([
-    { id: 1, name: 'Dakota Rice', country: 'Niger', city: 'Oud-Turnhout', salary: '$36,738' },
-    { id: 2, name: 'Minerva Hooper', country: 'Curaçao', city: 'Sinaai-Waas', salary: '$23,789' },
-    { id: 3, name: 'Sage Rodriguez', country: 'Netherlands', city: 'Baileux', salary: '$56,142' },
-    { id: 4, name: 'Philip Chaney', country: 'Korea, South', city: 'Overland Park', salary: '$38,735' },
-    { id: 5, name: 'Doris Greene', country: 'Malawi', city: 'Feldkirchen', salary: '$63,542' },
-    { id: 6, name: 'Mason Porter', country: 'Chile', city: 'Gloucester', salary: '$78,615' },
-  ]);
+  displayedColumns: string[] = ['nombre', 'fecha', 'edad', 'ultima_consulta', 'contacto', 'acciones'];
+  dataSource = new MatTableDataSource<any>([]);
+  clienteSeleccionado: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor() { }
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.cargarClientes();
+  }
+  cargarClientes(): void {
+    this.http.get<any>('http://localhost:3000/api/clientes').subscribe({
+      next: (response) => {
+        this.dataSource.data = response.data;
+      },
+      error: (error) => {
+        console.error('Error al cargar los datos de clientes:', error);
+      },
+    });
+  }
+
+  verDetalle(cliente: any): void {
+    this.dialog.open(DetalleClienteComponent, {
+      data: cliente,
+      width: '400px', // Puedes ajustar el tamaño del modal si es necesario
+    });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -44,4 +63,89 @@ export class TableListComponent implements OnInit {
     alert(`Detalles del cliente:\nNombre: ${element.name}\nPaís: ${element.country}`);
     // Aquí puedes abrir un modal para mostrar información detallada.
   }
+  editarCliente(cliente: any): void {
+    const dialogRef = this.dialog.open(DialogEditarClienteComponent, {
+      width: '400px',
+      data: { ...cliente },
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Aquí puedes recargar los datos o manejar la respuesta
+        Swal.fire({
+          title: '¡Éxito!',
+          text: 'Los datos se han guardado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then(() => {
+          this.cargarClientes();
+        });
+        
+      }
+    });
+  }
+  agregarCita(cliente: any): void {
+    const dialogRef = this.dialog.open(DialogAgregarCitaClienteComponent, {
+      width: '1000px',
+      maxHeight: '90vh',
+      data: { ...cliente },
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Aquí puedes recargar los datos o manejar la respuesta
+        Swal.fire({
+          title: '¡Éxito!',
+          text: 'Los datos se han guardado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then(() => {
+          this.cargarClientes();
+        });
+        
+      }
+    });
+  }
+  verConsultas(cliente: any): void {
+    const dialogRef = this.dialog.open(DialogVerConsultaClienteComponent, {
+      width: '1000px',
+      maxHeight: '90vh',
+      data: { ...cliente },
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Aquí puedes recargar los datos o manejar la respuesta
+        Swal.fire({
+          title: '¡Éxito!',
+          text: 'Los datos se han guardado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then(() => {
+          this.cargarClientes();
+        });
+        
+      }
+    });
+  }
+}
+// Componente para el diálogo del modal
+import { Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+
+@Component({
+  selector: 'dialog-detalle-cliente',
+  template: `
+    <h2>Detalle del Cliente</h2>
+    <p><strong>Nombre:</strong> {{ data.nombre }}</p>
+    <p><strong>Fecha:</strong> {{ data.fecha }}</p>
+    <p><strong>Edad:</strong> {{ data.edad }}</p>
+    <p><strong>Última Consulta:</strong> {{ data.ultima_consulta }}</p>
+    <p><strong>Contacto:</strong> {{ data.contacto }}</p>
+    <button mat-button mat-dialog-close>Cerrar</button>
+  `,
+})
+export class DialogDetalleClienteComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

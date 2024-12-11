@@ -1,15 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: "app-user-profile",
-  templateUrl: "./user-profile.component.html",
-  styleUrls: ["./user-profile.component.css"],
+  selector: 'app-dialog-agregar-cita-cliente',
+  templateUrl: './dialog-agregar-cita-cliente.component.html',
+  styleUrls: ['./dialog-agregar-cita-cliente.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class DialogAgregarCitaClienteComponent implements OnInit {
   mainForm: FormGroup; // Formulario principal
   hoy: string = new Date().toISOString().substring(0, 10); // Fecha actual
   odImages: File[] = [];
@@ -22,20 +23,11 @@ export class UserProfileComponent implements OnInit {
     { ojo: "OI", esf: "", cil: "", eje: "" },
   ];
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router,) {}
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router,private dialogRef: MatDialogRef<DialogAgregarCitaClienteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.mainForm = this.fb.group({
-      personalInfo: this.fb.group({
-        nombre: [""],
-        fecha: [this.hoy],
-        fechaNacimiento: [""],
-        ultimaConsulta: [""],
-        edad: [""],
-        contacto: [""],
-        ocupacion: [""],
-        motivo: [""],
-      }),
       antecedentes: this.fb.group({
         personales: [""],
         oculares: [""],
@@ -179,7 +171,7 @@ onFileSelect(eye: 'od' | 'oi', event: Event): void {
     
     const body = this.mainForm.value;
 
-    this.http.post('http://localhost:3000/api/save-form', body).subscribe({
+    this.http.post(`http://localhost:3000/api/save-form-cita/${this.data.cliente_id}`, body).subscribe({
       next: (response: any) => {
         // Manejar la respuesta exitosa
         console.log('Respuesta exitosa:', response);
@@ -202,6 +194,7 @@ onFileSelect(eye: 'od' | 'oi', event: Event): void {
               icon: 'success',
               confirmButtonText: 'Aceptar',
             }).then(() => {
+              this.dialogRef.close();
               // Redirigir a la URL
               this.router.navigate(['/table-list']);
             });
@@ -226,4 +219,5 @@ onFileSelect(eye: 'od' | 'oi', event: Event): void {
       },
     });
   } 
+
 }

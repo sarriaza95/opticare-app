@@ -1,0 +1,576 @@
+<div class="main-content" class="dialog-scrollable-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Crear Consulta</h4>
+              <p class="card-category">Ingrese toda la información de la consulta</p>
+            </div>
+            <div class="card-body">
+              <mat-vertical-stepper [linear]="true" [formGroup]="mainForm">
+                
+  
+                <!-- Step 2: Antecedentes -->
+                <mat-step [stepControl]="mainForm.get('antecedentes')">
+                  <form [formGroup]="mainForm.get('antecedentes')">
+                    <ng-template matStepLabel>Antecedentes</ng-template>
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Personales</mat-label>
+                      <textarea matInput formControlName="personales" rows="5"></textarea>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Oculares</mat-label>
+                      <textarea matInput formControlName="oculares" rows="5"></textarea>
+                    </mat-form-field>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>
+                </mat-step>
+  
+                <!-- Step 3: Lensometría -->
+                <mat-step [stepControl]="mainForm.get('lensometria')">
+                  <form [formGroup]="mainForm.get('lensometria')">
+                    <ng-template matStepLabel>Lensometría</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>OJO</th>
+                          <th>ESF</th>
+                          <th>CIL</th>
+                          <th>EJE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr formGroupName="od">
+                          <td>OD</td>
+                          <td><input formControlName="esf" type="text"></td>
+                          <td><input formControlName="cil" type="text"></td>
+                          <td><input formControlName="eje" type="text"></td>
+                        </tr>
+                        <tr formGroupName="oi">
+                          <td>OI</td>
+                          <td><input formControlName="esf" type="text"></td>
+                          <td><input formControlName="cil" type="text"></td>
+                          <td><input formControlName="eje" type="text"></td>
+                        </tr>
+                        <tr>
+                          <td>ADD</td>
+                          <td colspan="3"><input formControlName="add" type="text"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>                
+                </mat-step>
+                <!-- Step 4: Tipo de lente y filtros -->
+                <mat-step [stepControl]="mainForm.get('tipoLentes')">
+                  <form [formGroup]="mainForm.get('tipoLentes')">
+                    <ng-template matStepLabel>Tipo de lentes</ng-template>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Tipos de lentes y Filtros</mat-label>
+                          <input matInput formControlName="tipoLentes" placeholder="Tipo de lentes y filtro">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>
+                </mat-step>
+                <!-- Step 5: Examen Objetivo -->
+                <mat-step [stepControl]="mainForm.get('examenObjetivo')">
+                  <form [formGroup]="mainForm.get('examenObjetivo')">
+                    <ng-template matStepLabel>Examen Objetivo</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>OJO</th>
+                          <th>ESF</th>
+                          <th>CIL</th>
+                          <th>EJE</th>
+                          <th>AVSC</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr formGroupName="od">
+                          <td>OD</td>
+                          <td><input formControlName="esf" type="text"></td>
+                          <td><input formControlName="cil" type="text"></td>
+                          <td><input formControlName="eje" type="text"></td>
+                          <td><input formControlName="avsc" type="text"></td>
+                        </tr>
+                        <tr formGroupName="oi">
+                          <td>OI</td>
+                          <td><input formControlName="esf" type="text"></td>
+                          <td><input formControlName="cil" type="text"></td>
+                          <td><input formControlName="eje" type="text"></td>
+                          <td><input formControlName="avsc" type="text"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>                
+                </mat-step>
+                <!-- Step 6: RX Final -->
+                <mat-step [stepControl]="mainForm.get('rxFinal')">
+                  <form [formGroup]="mainForm.get('rxFinal')">
+                    <ng-template matStepLabel>RX Final</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>OJO</th>
+                          <th>ESF</th>
+                          <th>CIL</th>
+                          <th>EJE</th>
+                          <th>AVL</th>
+                          <th>AVC</th>
+                          <th>DNP</th>
+                          <th>ALT</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr formGroupName="od">
+                          <td>OD</td>
+                          <td><input formControlName="esf" matInput></td>
+                          <td><input formControlName="cil" matInput></td>
+                          <td><input formControlName="eje" matInput></td>
+                          <td><input formControlName="avl" matInput></td>
+                          <td><input formControlName="avc" matInput></td>
+                          <td><input formControlName="dnp" matInput></td>
+                          <td><input formControlName="alt" matInput></td>
+                        </tr>
+                        <tr formGroupName="oi">
+                          <td>OI</td>
+                          <td><input formControlName="esf" matInput></td>
+                          <td><input formControlName="cil" matInput></td>
+                          <td><input formControlName="eje" matInput></td>
+                          <td><input formControlName="avl" matInput></td>
+                          <td><input formControlName="avc" matInput></td>
+                          <td><input formControlName="dnp" matInput></td>
+                          <td><input formControlName="alt" matInput></td>
+                        </tr>
+                        <tr>
+                          <td>ADD</td>
+                          <td colspan="7"><input formControlName="add" type="text"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>                
+                </mat-step>
+                <!-- Step 7: Biomicroscopia -->
+                <mat-step [stepControl]="mainForm.get('biomicroscopia')">
+                  <form [formGroup]="mainForm.get('biomicroscopia')">
+                    <ng-template matStepLabel>Biomicroscopia</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Tipo</th>
+                          <th>OD</th>
+                          <th>OI</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Fila para las imágenes -->
+                        <tr>
+                          <td>Imágenes</td>
+                          <td formGroupName="od">
+                            <input
+                              id="od-images"
+                              formControlName="images"
+                              type="file"
+                              accept="image/*"
+                              multiple
+                              (change)="onFileSelect('od', $event)"
+                            />
+                          </td>
+                          <td formGroupName="oi">
+                            <input
+                              id="oi-images"
+                              formControlName="images"
+                              type="file"
+                              accept="image/*"
+                              multiple
+                              (change)="onFileSelect('oi', $event)"
+                            />
+                          </td>
+                        </tr>
+                        <!-- Fila para los videos -->
+                        <tr>
+                          <td>Videos</td>
+                          <td formGroupName="od">
+                            <input
+                              id="od-videos"
+                              formControlName="videos"
+                              type="file"
+                              accept="video/*"
+                              multiple
+                              (change)="onFileSelect('od', $event)"
+                            />
+                          </td>
+                          <td formGroupName="oi">
+                            <input
+                              id="oi-videos"
+                              formControlName="videos"
+                              type="file"
+                              accept="video/*"
+                              multiple
+                              (change)="onFileSelect('oi', $event)"
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>
+                  
+                </mat-step>
+                <!-- Step 8: Fondo de ojo -->
+                <mat-step [stepControl]="mainForm.get('fondoOjo')">
+                  <form [formGroup]="mainForm.get('fondoOjo')">
+                    <ng-template matStepLabel>Fondo de ojo</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>OD</th>
+                          <th>OI</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <input type="text" formControlName="od" placeholder="Ingrese dato OD" />
+                          </td>
+                          <td>
+                            <input type="text" formControlName="oi" placeholder="Ingrese dato OI" />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>
+                </mat-step>
+                <!-- Step 9: Motilidad Ocular -->
+                <mat-step [stepControl]="mainForm.get('motilidadOcular')">
+                  <form [formGroup]="mainForm.get('motilidadOcular')">
+                    <ng-template matStepLabel>Motilidad Ocular</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>OD</th>
+                          <th>OI</th>
+                          <th>AO</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <input type="text" formControlName="od" placeholder="Dato OD" />
+                          </td>
+                          <td>
+                            <input type="text" formControlName="oi" placeholder="Dato OI" />
+                          </td>
+                          <td>
+                            <input type="text" formControlName="ao" placeholder="Dato AO" />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>                
+                </mat-step>
+                <!-- Step 10: Cover Test -->
+                <mat-step [stepControl]="mainForm.get('coverTest')">
+                  <form [formGroup]="mainForm.get('coverTest')">
+                    <ng-template matStepLabel>Cover Test</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>OJO</th>
+                          <th>VL</th>
+                          <th>VP</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>OD</td>
+                          <td>
+                            <input type="text" formControlName="odVl" placeholder="VL OD" />
+                          </td>
+                          <td>
+                            <input type="text" formControlName="odVp" placeholder="VP OD" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>OI</td>
+                          <td>
+                            <input type="text" formControlName="oiVl" placeholder="VL OI" />
+                          </td>
+                          <td>
+                            <input type="text" formControlName="oiVp" placeholder="VP OI" />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>                
+                </mat-step>
+                <!-- Step 11: PIO -->
+                <mat-step [stepControl]="mainForm.get('pio')">
+                  <form [formGroup]="mainForm.get('pio')">
+                    <ng-template matStepLabel>PIO</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>OJO</th>
+                          <th>Presión Intraocular</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>OD</td>
+                          <td>
+                            <input
+                              type="number"
+                              formControlName="odPio"
+                              placeholder="Ingrese PIO OD"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>OI</td>
+                          <td>
+                            <input
+                              type="number"
+                              formControlName="oiPio"
+                              placeholder="Ingrese PIO OI"
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>                
+                </mat-step>
+                <!-- Step 12: Diagnostico -->
+                <mat-step [stepControl]="mainForm.get('diagnostico')">
+                  <form [formGroup]="mainForm.get('diagnostico')">
+                    <ng-template matStepLabel>Diagnóstico</ng-template>
+                  
+                    <!-- Diagnóstico -->
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Diagnóstico</mat-label>
+                          <input matInput formControlName="diagnostico" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  
+                    <!-- Tipos de lentes -->
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Tipos de lentes</mat-label>
+                          <input matInput formControlName="tiposLentes" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  
+                    <!-- Próxima cita -->
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Próxima cita</mat-label>
+                          <input matInput formControlName="proximaCita" type="date">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  
+                    <!-- Observaciones -->
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Observaciones</mat-label>
+                          <textarea
+                            matInput
+                            formControlName="observaciones"
+                          ></textarea>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  
+                    <!-- Botones de navegación -->
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>                
+                </mat-step>
+                <!-- Step 13: Datos de montaje -->
+                <mat-step [stepControl]="mainForm.get('datosMontaje')">
+                  <form [formGroup]="mainForm.get('datosMontaje')">
+                    <ng-template matStepLabel>Datos de montaje</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Descentración</th>
+                          <th>H</th>
+                          <th>V</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Datos para el ojo derecho (OD) -->
+                        <tr>
+                          <td>OD</td>
+                          <td>
+                            <mat-form-field appearance="outline">
+                              <mat-label>H</mat-label>
+                              <input matInput formControlName="odH" type="number" />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field appearance="outline">
+                              <mat-label>V</mat-label>
+                              <input matInput formControlName="odV" type="number" />
+                            </mat-form-field>
+                          </td>
+                        </tr>
+                        
+                        <!-- Datos para el ojo izquierdo (OI) -->
+                        <tr>
+                          <td>OI</td>
+                          <td>
+                            <mat-form-field appearance="outline">
+                              <mat-label>H</mat-label>
+                              <input matInput formControlName="oiH" type="number" />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field appearance="outline">
+                              <mat-label>V</mat-label>
+                              <input matInput formControlName="oiV" type="number" />
+                            </mat-form-field>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- Botones de navegación -->
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>
+                  
+                </mat-step>
+                <!-- Step 14: querotometria -->
+                <mat-step [stepControl]="mainForm.get('queratometria')">
+                  <form [formGroup]="mainForm.get('queratometria')">
+                    <ng-template matStepLabel>Queratometría</ng-template>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>OD</th>
+                          <th>OI</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Campo para el Ojo Derecho (OD) -->
+                        <tr>
+                          <td>
+                            <mat-form-field appearance="outline">
+                              <mat-label>Queratometría OD</mat-label>
+                              <input matInput type="number" formControlName="odKeratometria" />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field appearance="outline">
+                              <mat-label>Queratometría OI</mat-label>
+                              <input matInput type="number" formControlName="oiKeratometria" />
+                            </mat-form-field>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                  </form>
+                </mat-step>
+                <!-- Step 15: Observaciones -->
+                <mat-step [stepControl]="mainForm.get('observaciones')">
+                  <form [formGroup]="mainForm.get('observaciones')">
+                    <ng-template matStepLabel>Pupilas</ng-template>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field appearance="outline" class="half-width">
+                          <mat-label>Observaciones</mat-label>
+                          <input matInput formControlName="observaciones" />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div>
+                      <button mat-button matStepperPrevious>Anterior</button>
+                      <button mat-button (click)="submitForm()">Guardar</button>
+                    </div>
+                  </form>
+                  
+                  <!-- Botones de navegación -->
+                  <div>
+                    
+                  </div>
+                </mat-step>
+              </mat-vertical-stepper>
+  
+              <!-- <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="javascript:void(0)">
+                            <img class="img" src="./assets/img/faces/marc.jpg" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+                        <h4 class="card-title">Alec Thompson</h4>
+                        <p class="card-description">
+                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        </p>
+                        <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
+                    </div>
+                </div>
+            </div> -->
+            </div>
+          </div>
+        </div>

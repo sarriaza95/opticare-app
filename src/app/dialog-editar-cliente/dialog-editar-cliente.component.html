@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Editar Cliente</h2>
+<mat-dialog-content>
+  <form [formGroup]="formulario" (ngSubmit)="guardarCambios()">
+    <mat-form-field class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" />
+    </mat-form-field>
+
+    <!-- <mat-form-field class="full-width">
+      <mat-label>Fecha</mat-label>
+      <input matInput formControlName="fecha" type="date" />
+    </mat-form-field> -->
+
+    <mat-form-field class="full-width">
+      <mat-label>Edad</mat-label>
+      <input matInput formControlName="edad" type="number" />
+    </mat-form-field>
+
+    <!-- <mat-form-field class="full-width">
+      <mat-label>Última Consulta</mat-label>
+      <input matInput formControlName="ultima_consulta" type="date" />
+    </mat-form-field> -->
+
+    <mat-form-field class="full-width">
+      <mat-label>Contacto</mat-label>
+      <input matInput formControlName="contacto" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Ocupación</mat-label>
+        <input matInput formControlName="ocupacion" />
+      </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancelar</button>
+      <button mat-button color="primary" type="submit" [disabled]="formulario.invalid">
+        Guardar
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>

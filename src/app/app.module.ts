@@ -17,6 +17,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DetalleClienteComponent } from './detalle-cliente/detalle-cliente.component';
+import { DialogEditarClienteComponent } from './dialog-editar-cliente/dialog-editar-cliente.component';
+import { DialogAgregarCitaClienteComponent } from './dialog-agregar-cita-cliente/dialog-agregar-cita-cliente.component';
+import { DialogVerConsultaClienteComponent } from './dialog-ver-consulta-cliente/dialog-ver-consulta-cliente.component';
+import { DialogVerExpedienteClienteComponent } from './dialog-ver-expediente-cliente/dialog-ver-expediente-cliente.component';
 
 @NgModule({
   imports: [
@@ -38,7 +43,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatDialogModule,
   ],
-  declarations: [AppComponent, AdminLayoutComponent, UserProfileComponent, TableListComponent],
+  declarations: [AppComponent, AdminLayoutComponent, UserProfileComponent, TableListComponent, DetalleClienteComponent, DialogEditarClienteComponent, DialogAgregarCitaClienteComponent, DialogVerConsultaClienteComponent, DialogVerExpedienteClienteComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

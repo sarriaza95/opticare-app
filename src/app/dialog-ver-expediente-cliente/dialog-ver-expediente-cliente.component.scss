@@ -1,0 +1,25 @@
+.dialog-scrollable-content {
+    max-height: 60vh; /* Ajusta el tamaño máximo del área del contenido */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    padding-right: 16px; /* Espaciado para evitar superposición con el scroll */
+  }
+  table {
+    width: 50%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+th {
+    background-color: #f4f4f4;
+}
+caption {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
