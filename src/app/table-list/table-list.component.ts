@@ -9,6 +9,7 @@ import { DetalleClienteComponent } from '../detalle-cliente/detalle-cliente.comp
 import { DialogEditarClienteComponent } from 'app/dialog-editar-cliente/dialog-editar-cliente.component';
 import { DialogAgregarCitaClienteComponent } from 'app/dialog-agregar-cita-cliente/dialog-agregar-cita-cliente.component';
 import { DialogVerConsultaClienteComponent } from 'app/dialog-ver-consulta-cliente/dialog-ver-consulta-cliente.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -126,6 +127,47 @@ export class TableListComponent implements OnInit {
         });
         
       }
+    });
+  }
+  confirmarBorrado(element: any): void {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `Estás a punto de eliminar al cliente: ${element.nombre}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.borrarCliente(element.cliente_id); // Llama al método para eliminar
+      }
+    });
+  }
+  borrarCliente(id: number): void {
+    this.http.delete(`http://localhost:3000/api/clientes/${id}`).subscribe({
+      next: () => {
+        Swal.fire({
+          title: '¡Éxito!',
+          text: 'Los datos se han eliminado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        }).then(() => {
+          this.cargarClientes(); // Refresca la lista de clientes después de eliminar
+        });
+        
+      },
+      error: (err) => {
+        Swal.fire({
+          title: 'Error',
+          text: 'Ha ocurrido un error al eliminar cliente.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
+        console.error(err);
+        
+      },
     });
   }
 }

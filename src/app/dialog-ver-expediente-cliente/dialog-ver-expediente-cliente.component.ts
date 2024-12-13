@@ -15,7 +15,14 @@ export class DialogVerExpedienteClienteComponent implements OnInit {
   hoy: string = new Date().toISOString().substring(0, 10); // Fecha actual
   expediente_id: number = 0; // ID del expediente recibido
   apiUrl = 'http://localhost:3000/api'; // URL base de la API
-
+  biomicroscopiaData = {
+    od_images: [] as string[],
+    oi_images: [] as string[],
+    od_videos: [] as string[],
+    oi_videos: [] as string[],
+  };
+  odImages: string[] = [];
+  oiVideos: string[] = [];
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -31,6 +38,7 @@ export class DialogVerExpedienteClienteComponent implements OnInit {
 
     // Cargar los datos del expediente
     this.loadExpedienteData();
+    this.cargarBiomicroscopia();
   }
 
   private initializeForm(): void {
@@ -152,6 +160,18 @@ export class DialogVerExpedienteClienteComponent implements OnInit {
           Swal.fire('Error', 'No se pudo cargar el expediente.', 'error');
         }
       });
+  }
+  cargarBiomicroscopia(): void {
+    this.http.get<any>(`http://localhost:3000/api/biomicroscopia/${this.expediente_id}`).subscribe({
+      next: (data) => {
+        // Ajustar las URLs para mostrar las miniaturas
+        this.odImages = (data.od_images || []).map((file: string) => `http://localhost:3000/uploads/${file}`);
+        this.oiVideos = (data.oi_videos || []).map((file: string) => `http://localhost:3000/uploads/${file}`);
+      },
+      error: (err) => {
+        console.error('Error cargando biomicroscopia:', err);
+      },
+    });
   }
 
   private fillForm(data: any): void {
