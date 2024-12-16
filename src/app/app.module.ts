@@ -22,6 +22,7 @@ import { DialogEditarClienteComponent } from './dialog-editar-cliente/dialog-edi
 import { DialogAgregarCitaClienteComponent } from './dialog-agregar-cita-cliente/dialog-agregar-cita-cliente.component';
 import { DialogVerConsultaClienteComponent } from './dialog-ver-consulta-cliente/dialog-ver-consulta-cliente.component';
 import { DialogVerExpedienteClienteComponent } from './dialog-ver-expediente-cliente/dialog-ver-expediente-cliente.component';
+import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,7 @@ import { DialogVerExpedienteClienteComponent } from './dialog-ver-expediente-cli
     MatButtonModule,
     MatDialogModule,
   ],
-  declarations: [AppComponent, AdminLayoutComponent, UserProfileComponent, TableListComponent, DetalleClienteComponent, DialogEditarClienteComponent, DialogAgregarCitaClienteComponent, DialogVerConsultaClienteComponent, DialogVerExpedienteClienteComponent],
+  declarations: [AppComponent, AdminLayoutComponent, UserProfileComponent, TableListComponent, DetalleClienteComponent, DialogEditarClienteComponent, DialogAgregarCitaClienteComponent, DialogVerConsultaClienteComponent, DialogVerExpedienteClienteComponent, ImageDialogComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

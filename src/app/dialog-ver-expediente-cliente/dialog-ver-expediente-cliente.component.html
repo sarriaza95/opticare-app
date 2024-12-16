@@ -176,16 +176,19 @@
               <!-- Step 7: Biomicroscopia -->
               <mat-step [stepControl]="mainForm.get('biomicroscopia')">
                 <ng-template matStepLabel>Biomicroscopia</ng-template>
+                
+                <!-- Imágenes OD -->
                 <div>
                   <h3>Imágenes OD</h3>
                   <div *ngIf="odImages.length > 0; else noOdImages">
-                    <img *ngFor="let img of odImages" [src]="img" alt="Imagen OD" width="150" height="150" />
+                    <img *ngFor="let img of odImages" [src]="img" alt="Imagen OD" width="150" height="150" (click)="openImageDialog(img)" style="cursor: pointer;" />
                   </div>
                   <ng-template #noOdImages>
                     <p>No hay imágenes disponibles.</p>
                   </ng-template>
                 </div>
                 
+                <!-- Videos OI -->
                 <div>
                   <h3>Videos OI</h3>
                   <div *ngIf="oiVideos.length > 0; else noOiVideos">
@@ -196,11 +199,35 @@
                   </ng-template>
                 </div>
                 
+                <!-- Imágenes OI -->
+                <div>
+                  <h3>Imágenes OI</h3>
+                  <div *ngIf="oiImages.length > 0; else noOiImages">
+                    <img *ngFor="let img of oiImages" [src]="img" alt="Imagen OI" width="150" height="150" (click)="openImageDialog(img)" style="cursor: pointer;" />
+                  </div>
+                  <ng-template #noOiImages>
+                    <p>No hay imágenes disponibles.</p>
+                  </ng-template>
+                </div>
+                
+                <!-- Videos OD -->
+                <div>
+                  <h3>Videos OD</h3>
+                  <div *ngIf="odVideos.length > 0; else noOdVideos">
+                    <video *ngFor="let video of odVideos" [src]="video" controls width="300"></video>
+                  </div>
+                  <ng-template #noOdVideos>
+                    <p>No hay videos disponibles.</p>
+                  </ng-template>
+                </div>
+              
+                <!-- Botones de navegación -->
                 <div>
                   <button mat-button matStepperPrevious>Anterior</button>
                   <button mat-button matStepperNext>Siguiente</button>
                 </div>
               </mat-step>
+                          
               <!-- Step 8: Fondo de ojo -->
               <mat-step [stepControl]="mainForm.get('fondoOjo')">
                 <form [formGroup]="mainForm.get('fondoOjo')">
@@ -268,28 +295,17 @@
                   <table>
                     <thead>
                       <tr>
-                        <th>OJO</th>
                         <th>VL</th>
                         <th>VP</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>OD</td>
                         <td>
                           <input type="text" formControlName="odVl" placeholder="VL OD" />
                         </td>
                         <td>
                           <input type="text" formControlName="odVp" placeholder="VP OD" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>OI</td>
-                        <td>
-                          <input type="text" formControlName="oiVl" placeholder="VL OI" />
-                        </td>
-                        <td>
-                          <input type="text" formControlName="oiVp" placeholder="VP OI" />
                         </td>
                       </tr>
                     </tbody>
@@ -504,7 +520,7 @@
                   <!-- Botones de navegación -->
                   <div>
                     <button mat-button matStepperPrevious>Anterior</button>
-                    <!-- <button mat-button (click)="submitForm()">Guardar</button> -->
+                    <button mat-button (click)="onSubmit()">Actualizar</button>
                   </div>
                 </form>
                 

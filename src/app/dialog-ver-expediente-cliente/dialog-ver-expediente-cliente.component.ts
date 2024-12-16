@@ -3,7 +3,11 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef,  MatDialogModule } from '@angular/material/dialog';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component'; 
+import { MatDialog } from '@angular/material/dialog';
+
+
 
 @Component({
   selector: 'app-dialog-ver-expediente-cliente',
@@ -23,10 +27,13 @@ export class DialogVerExpedienteClienteComponent implements OnInit {
   };
   odImages: string[] = [];
   oiVideos: string[] = [];
+  oiImages: string[] = [];
+  odVideos: string[] = [];
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
+    public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: { expediente_id: number }, // Recibe datos del diálogo
     private dialogRef: MatDialogRef<DialogVerExpedienteClienteComponent>
   ) {
@@ -167,12 +174,15 @@ export class DialogVerExpedienteClienteComponent implements OnInit {
         // Ajustar las URLs para mostrar las miniaturas
         this.odImages = (data.od_images || []).map((file: string) => `http://localhost:3000/uploads/${file}`);
         this.oiVideos = (data.oi_videos || []).map((file: string) => `http://localhost:3000/uploads/${file}`);
+        this.oiImages = (data.oi_images || []).map((file: string) => `http://localhost:3000/uploads/${file}`);
+        this.odVideos = (data.od_videos || []).map((file: string) => `http://localhost:3000/uploads/${file}`);
       },
       error: (err) => {
         console.error('Error cargando biomicroscopia:', err);
       },
     });
   }
+  
 
   private fillForm(data: any): void {
     console.log(data);
@@ -188,16 +198,16 @@ export class DialogVerExpedienteClienteComponent implements OnInit {
     const lensometria = data.lensometria?.[0] || {};
     this.mainForm.get('lensometria')?.patchValue({
       od: {
-        esf: lensometria.od_esf || "",
-        cil: lensometria.od_cil || "",
-        eje: lensometria.od_eje || ""
+        esf: lensometria.od_esf ?? "", // Usa `??` para valores nulos o indefinidos
+        cil: lensometria.od_cil ?? "",
+        eje: lensometria.od_eje ?? ""
       },
       oi: {
-        esf: lensometria.oi_esf || "",
-        cil: lensometria.oi_cil || "",
-        eje: lensometria.oi_eje || ""
+        esf: lensometria.oi_esf ?? "",
+        cil: lensometria.oi_cil ?? "",
+        eje: lensometria.oi_eje ?? ""
       },
-      add: lensometria.add || ""
+      add: lensometria.add ?? ""
     });
   
     // Tipo de lentes
@@ -210,18 +220,44 @@ export class DialogVerExpedienteClienteComponent implements OnInit {
     const examenObjetivo = data.examenObjetivo?.[0] || {};
     this.mainForm.get('examenObjetivo')?.patchValue({
       od: {
-        esf: examenObjetivo.od_esf || "",
-        cil: examenObjetivo.od_cil || "",
-        eje: examenObjetivo.od_eje || "",
-        avsc: examenObjetivo.od_avsc || ""
+        esf: examenObjetivo.od_esf ?? "",
+        cil: examenObjetivo.od_cil ?? "",
+        eje: examenObjetivo.od_eje ?? "",
+        avsc: examenObjetivo.od_avsc ?? ""
       },
       oi: {
-        esf: examenObjetivo.oi_esf || "",
-        cil: examenObjetivo.oi_cil || "",
-        eje: examenObjetivo.oi_eje || "",
-        avsc: examenObjetivo.oi_avsc || ""
+        esf: examenObjetivo.oi_esf ?? "",
+        cil: examenObjetivo.oi_cil ?? "",
+        eje: examenObjetivo.oi_eje ?? "",
+        avsc: examenObjetivo.oi_avsc ?? ""
       }
     });
+
+    //RX Final
+
+    const rxFinal = data.rxFinal?.[0] || {};
+this.mainForm.get('rxFinal')?.patchValue({
+    od: {
+        esf: rxFinal.od_esf ?? "",
+        cil: rxFinal.od_cil ?? "",
+        eje: rxFinal.od_eje ?? "",
+        avl: rxFinal.od_avl ?? "",
+        avc: rxFinal.od_avc ?? "",
+        dnp: rxFinal.od_dnp ?? "",
+        alt: rxFinal.od_alt ?? ""
+    },
+    oi: {
+        esf: rxFinal.oi_esf ?? "",
+        cil: rxFinal.oi_cil ?? "",
+        eje: rxFinal.oi_eje ?? "",
+        avl: rxFinal.oi_avl ?? "",
+        avc: rxFinal.oi_avc ?? "",
+        dnp: rxFinal.oi_dnp ?? "",
+        alt: rxFinal.oi_alt ?? ""
+    },
+    add: rxFinal.add ?? ""
+});
+
   
     // Fondo de Ojo
     const fondoOjo = data.fondoOjo?.[0] || {};
@@ -245,6 +281,33 @@ export class DialogVerExpedienteClienteComponent implements OnInit {
       odVp: coverTest.od_vp || "",
       oiVl: coverTest.oi_vl || "",
       oiVp: coverTest.oi_vp || ""
+    });
+
+    //PIO
+    const pio = data.pio?.[0] || {};
+    this.mainForm.get('pio')?.patchValue({
+      odPio: pio.od_pio ?? "",
+      oiPio: pio.oi_pio ?? ""
+    });
+
+    //Diagnostico
+    const diagnostico = data.diagnostico?.[0] || {};
+    this.mainForm.get('diagnostico')?.patchValue({
+      diagnostico: diagnostico.diagnostico ?? "",
+      tiposLentes: diagnostico.tipos_lentes ?? "",
+      proximaCita: diagnostico.proxima_cita
+      ? new Date(diagnostico.proxima_cita).toISOString().split("T")[0]
+      : null,
+      observaciones: diagnostico.observaciones ?? ""
+    });
+
+    //Datos Montajes
+    const datosMontaje = data.datosMontaje?.[0] || {};
+    this.mainForm.get('datosMontaje')?.patchValue({
+      odH: datosMontaje.od_h ?? "",
+      odV: datosMontaje.od_v ?? "",
+      oiH: datosMontaje.oi_h ?? "",
+      oiV: datosMontaje.oi_v ?? ""
     });
   
     // Queratometría
@@ -276,5 +339,34 @@ export class DialogVerExpedienteClienteComponent implements OnInit {
   
     // RX Final, PIO, Diagnóstico y Datos Montaje no tienen datos en el ejemplo proporcionado, pero puedes agregar validaciones similares.
   }
-  
+  // Método para actualizar el expediente
+  onSubmit() {
+    if (this.mainForm.valid) {
+      this.http.put(`${this.apiUrl}/${this.expediente_id}`, this.mainForm.value).subscribe({
+        next: (response) => {
+          console.log('Expediente actualizado:', response);
+          Swal.fire({
+              title: '¡Éxito!',
+              text: 'Los datos se han guardado correctamente.',
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+            }).then(() => {
+              // Recargar la página actual
+              window.location.reload();
+          });
+        },
+        error: (err) => {
+          console.error('Error al actualizar expediente:', err);
+        },
+      });
+    }
+  }
+  // Método para abrir el modal con la imagen ampliada
+  openImageDialog(imageUrl: string): void {
+    this.dialog.open(ImageDialogComponent, {
+      data: {
+        imageUrl: imageUrl // Pasa la URL de la imagen que deseas mostrar
+      }
+    });
+  }
 }
