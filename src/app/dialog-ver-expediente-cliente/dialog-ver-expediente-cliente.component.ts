@@ -369,4 +369,27 @@ this.mainForm.get('rxFinal')?.patchValue({
       }
     });
   }
+  generarPDF(): void {
+    const formData = this.mainForm.value;
+
+    this.http.post('http://localhost:3000/api/generar-pdf', formData, { responseType: 'blob' }).subscribe({
+      next: (response) => {
+        // Crear una URL para el blob
+        const url = window.URL.createObjectURL(response);
+
+        // Crear un enlace para descargar el archivo
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `expediente-${Date.now()}.pdf`;
+        a.click();
+
+        // Liberar el recurso de memoria
+        window.URL.revokeObjectURL(url);
+      },
+      error: (error) => {
+        console.error('Error al generar el PDF:', error);
+        alert('Ocurrió un error al generar el PDF');
+      },
+    });
+  }
 }
